@@ -1,2 +1,3 @@
-# -SO1-Practica1
-Practica #1 Sistemas Operativos 1
+# Practica 1
+
+_Practica 1 Sistemas operativos 1_
