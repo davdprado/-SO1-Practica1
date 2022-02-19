@@ -14,6 +14,8 @@ import (
 	"os"
 	"time"
 
+	"github.com/rs/cors"
+
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -109,13 +111,19 @@ func main() {
 	port := os.Getenv("PORT")
 	//Creamos el router
 	router := mux.NewRouter().StrictSlash(true)
+	//enableCORS(router)
 	//Ruta principal
 	router.HandleFunc("/", indexRoute)
 	//Escuchamos al puerto
 	router.HandleFunc("/insertar", nuevaOp).Methods("POST")
 	router.HandleFunc("/obtener", obtenerdatos).Methods("GET", "OPTIONS")
+	//para habilitar los cors dentro de nuestro servidor
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://localhost:3000"},
+		AllowCredentials: true,
+	})
 
 	fmt.Println("Server on port:" + port)
-
-	log.Fatal(http.ListenAndServe(":"+port, router))
+	handler := c.Handler(router)
+	log.Fatal(http.ListenAndServe(":"+port, handler))
 }

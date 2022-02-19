@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Cal.css";
+import axios from "axios";
 
 export default function Calc() {
   const [conta, setConta] = useState("");
@@ -8,7 +9,7 @@ export default function Calc() {
   let Simbolo = "";
   let Resultado = 0;
 
-  const operar = () => {
+  async function operar() {
     const operacion = conta.split(" ");
     Num1 = parseFloat(operacion[0]);
     Num2 = parseFloat(operacion[2]);
@@ -28,7 +29,20 @@ export default function Calc() {
         break;
     }
     setConta(Resultado.toString());
-  };
+    var hoy = new Date();
+    var fecha = hoy.toISOString();
+    let nueOpe = {
+      numero1: Num1,
+      numero2: Num2,
+      operacion: String(Simbolo),
+      resultado: Resultado,
+      fecha: String(fecha),
+    };
+    console.log(nueOpe);
+    const { data } = await axios.post("http://localhost:8080/insertar", nueOpe);
+    console.log(data);
+    data ? alert("opearcion exitosa") : alert("Sin exito");
+  }
   return (
     <>
       <input type={Text} value={conta} />
@@ -51,7 +65,7 @@ export default function Calc() {
         <button onClick={() => setConta(conta + ".")}>.</button>
         <button onClick={() => setConta(conta + " + ")}>+</button>
         <button onClick={() => setConta(conta + " - ")}>-</button>
-        <button onClick={() => setConta(operar)}>=</button>
+        <button onClick={operar}>=</button>
       </section>
       <br></br>
       <br></br>

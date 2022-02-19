@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Tabla.css";
 
 function useDatos() {
   const [operaciones, setOperaciones] = useState([]);
@@ -17,28 +18,30 @@ export default function Tabla() {
   return (
     <>
       <h1>Registros</h1>
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Numero1</th>
-            <th scope="col">Numero1</th>
-            <th scope="col">Operacion</th>
-            <th scope="col">Resultado</th>
-            <th scope="col">Fecha</th>
-          </tr>
-        </thead>
-        <tbody>
-          {operaciones.map((item) => (
-            <tr key={item._id}>
-              <td>{item.numero1}</td>
-              <td>{item.numero2}</td>
-              <td>{item.operacion}</td>
-              <td>{item.resultado}</td>
-              <td>{item.fecha}</td>
+      <section className="tablita">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Numero1</th>
+              <th scope="col">Numero1</th>
+              <th scope="col">Operacion</th>
+              <th scope="col">Resultado</th>
+              <th scope="col">Fecha</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {operaciones.map((item) => (
+              <tr key={item._id}>
+                <td>{parseFloat(item.numero1).toFixed(3)}</td>
+                <td>{parseFloat(item.numero2).toFixed(3)}</td>
+                <td>{item.operacion}</td>
+                <td>{parseFloat(item.resultado).toFixed(3)}</td>
+                <td>{item.fecha}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     </>
   );
 }
