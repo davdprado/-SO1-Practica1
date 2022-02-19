@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Cal.css";
 
 export default function Calc() {
   const [conta, setConta] = useState("");
@@ -32,26 +33,26 @@ export default function Calc() {
     <>
       <input type={Text} value={conta} />
       <br></br>
-      <button onClick={() => setConta(conta + "7")}>7</button>
-      <button onClick={() => setConta(conta + "8")}>8</button>
-      <button onClick={() => setConta(conta + "9")}>9</button>
-      <button onClick={() => setConta("")}>AC</button>
-      <br></br>
-      <button onClick={() => setConta(conta + "4")}>4</button>
-      <button onClick={() => setConta(conta + "5")}>5</button>
-      <button onClick={() => setConta(conta + "6")}>6</button>
-      <button onClick={() => setConta(conta + " * ")}>X</button>
-      <button onClick={() => setConta(conta + " / ")}>/</button>
-      <br></br>
-      <button onClick={() => setConta(conta + "1")}>1</button>
-      <button onClick={() => setConta(conta + "2")}>2</button>
-      <button onClick={() => setConta(conta + "3")}>3</button>
-      <button onClick={() => setConta(conta + " + ")}>+</button>
-      <button onClick={() => setConta(conta + " - ")}>-</button>
-      <br></br>
-      <button onClick={() => setConta(conta + "0")}>0</button>
-      <button onClick={() => setConta(conta + ".")}>.</button>
-      <button onClick={() => setConta(operar)}>=</button>
+      <section>
+        <button onClick={() => setConta(conta + "7")}>7</button>
+        <button onClick={() => setConta(conta + "8")}>8</button>
+        <button onClick={() => setConta(conta + "9")}>9</button>
+        <button onClick={() => setConta("")}>AC</button>
+        <button onClick={() => setConta(conta + "4")}>4</button>
+        <button onClick={() => setConta(conta + "5")}>5</button>
+        <button onClick={() => setConta(conta + "6")}>6</button>
+        <button onClick={() => setConta(conta + " * ")}>X</button>
+
+        <button onClick={() => setConta(conta + "1")}>1</button>
+        <button onClick={() => setConta(conta + "2")}>2</button>
+        <button onClick={() => setConta(conta + "3")}>3</button>
+        <button onClick={() => setConta(conta + " / ")}>/</button>
+        <button onClick={() => setConta(conta + "0")}>0</button>
+        <button onClick={() => setConta(conta + ".")}>.</button>
+        <button onClick={() => setConta(conta + " + ")}>+</button>
+        <button onClick={() => setConta(conta + " - ")}>-</button>
+        <button onClick={() => setConta(operar)}>=</button>
+      </section>
       <br></br>
       <br></br>
     </>
