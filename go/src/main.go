@@ -98,8 +98,7 @@ func obtenerdatos(w http.ResponseWriter, r *http.Request) {
 
 	data, _ := json.Marshal(ope)
 	fmt.Println(string(data))
-
-	json.NewEncoder(w).Encode(string(data))
+	fmt.Fprintf(w, string(data))
 
 }
 
@@ -114,7 +113,7 @@ func main() {
 	router.HandleFunc("/", indexRoute)
 	//Escuchamos al puerto
 	router.HandleFunc("/insertar", nuevaOp).Methods("POST")
-	router.HandleFunc("/obtener", obtenerdatos).Methods("GET")
+	router.HandleFunc("/obtener", obtenerdatos).Methods("GET", "OPTIONS")
 
 	fmt.Println("Server on port:" + port)
 
