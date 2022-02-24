@@ -118,12 +118,7 @@ func main() {
 	router.HandleFunc("/insertar", nuevaOp).Methods("POST")
 	router.HandleFunc("/obtener", obtenerdatos).Methods("GET", "OPTIONS")
 	//para habilitar los cors dentro de nuestro servidor
-	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:3000"},
-		AllowCredentials: true,
-	})
-
+	handler := cors.Default().Handler(router)
 	fmt.Println("Server on port:" + port)
-	handler := c.Handler(router)
 	log.Fatal(http.ListenAndServe(":"+port, handler))
 }
